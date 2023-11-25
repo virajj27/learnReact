@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom";
 //createElement(is an object) => it is converted to h1 tag via the render method
 //<div id="parent">
 //  <div id="child">
