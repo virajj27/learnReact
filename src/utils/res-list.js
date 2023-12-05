@@ -118,7 +118,7 @@ export const restaurantList = [
         iconType: "EMPTY",
       },
       promoted: true,
-      avgRating: "4.0",
+      avgRating: "4.5",
       totalRatings: 5000,
       new: false,
     },

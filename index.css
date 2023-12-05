@@ -23,15 +23,13 @@
     padding: 10px;
 }
 .rest-card{
-    width: 500px;
+    width: 50%;
     border: 1px solid grey;
-    margin: 40px;
+    margin: 10px;
     background-color: whitesmoke;
 }
 .rest-card:hover{
     border:2px solid black;
-    /* display: none; */
-    
 }
 .res-logo{
     width:90%;
@@ -44,4 +42,28 @@
     display: flex;
     margin:10px;
     padding: 20px;
+}
+.filter-btn{
+    margin:4px; 
+    cursor: pointer;
+}
+.shimmer-container{
+    display:flex;
+    flex-wrap:wrap;
+
+}
+.shimmer-card{
+    margin: 20px;
+    width:200px;
+    height:400px;
+    background-color:#f0f0f0;
+}
+.filter{
+    display: flex;
+}
+.search{
+    margin:4px;
+}
+.search-btn{
+    cursor:pointer;
 }
