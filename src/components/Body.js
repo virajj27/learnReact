@@ -1,6 +1,7 @@
 import RestCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { API_URL } from "../utils/constants";
 export default Body = () => {
   const [totalRestaurants, setTotalRestaurants] = useState([]);
   const [searchText, updateSearchText] = useState("");
@@ -9,9 +10,7 @@ export default Body = () => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.03500244997552&lng=73.01942624151707&collection=83637&tags=layout_CCS_Burger&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
-    );
+    const data = await fetch(API_URL);
     const json = await data.json();
     const updatedArray = json?.data?.cards.slice(3);
     setTotalRestaurants(updatedArray.map((item) => item?.card?.card?.info));
