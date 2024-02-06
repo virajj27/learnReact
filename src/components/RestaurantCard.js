@@ -22,3 +22,19 @@ export default RestCard = (props) => {
     </div>
   );
 };
+//higher order component
+export const withPromotedLabel = (RestCard) => {
+  //component as input(RestCard)
+  return (props) => {
+    //returns a component (function)
+    return (
+      //return modified component
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          promoted
+        </label>
+        <RestCard {...props} />
+      </div>
+    );
+  };
+};

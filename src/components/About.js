@@ -15,7 +15,6 @@ class About extends Component {
         <h1>About</h1>
         <h2>this is the about us section</h2>
         <UserClass
-          name={"viraj padale"}
           location={"navi mumbai"}
           contact={"virajpadale27@gmail.com"}
         />

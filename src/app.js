@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
-import RestaurantPage from "./components/RestaurantPage";
+import RestaurantPage from "./components/RestaurantMenu";
 
 //very very important for optimization
 const Grocery = lazy(() => import("./components/Grocery"));

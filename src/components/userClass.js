@@ -11,9 +11,9 @@ class UserClass extends React.Component {
     };
   }
   async componentDidMount() {
+    //note async
     const data = await fetch("https://api.github.com/users/virajj27");
     const json = await data.json();
-    console.log(json);
     this.setState({ userInfo: json });
   }
   render() {
@@ -30,3 +30,16 @@ class UserClass extends React.Component {
   }
 }
 export default UserClass;
+
+// component lifecycle
+/*
+MOUNTING PHASE
+
+constructor(dummy)->render(dummy)->dummy data load<HTML>
+->componentDidMount-><API call>->this.setstate()
+
+
+UPDATE PHASE
+render->api call->new data rendered->componentDidUpdate
+
+*/

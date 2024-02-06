@@ -1,14 +1,15 @@
-import RestCard from "./RestaurantCard";
+import RestCard, { withPromotedLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantCards from "../utils/useRestaurantCards";
 export default Body = () => {
-  // const totalRestaurants = useRestaurantCards(); //custom hook
+  const [filteredData, setFilteredData] = useState([]);
   const [totalRestaurants, setTotalRestaurants] = useState([]);
   const [searchText, updateSearchText] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
+  const PromotedRestaurantCard = withPromotedLabel(RestCard); //higher order component
   useEffect(() => {
     fetchData();
     console.log("body useEffect called");
@@ -17,12 +18,10 @@ export default Body = () => {
     const data = await fetch(API_URL);
     const json = await data.json();
     const updatedArray = json?.data?.cards.slice(3);
-    setTotalRestaurants(updatedArray?.map((item) => item?.card?.card?.info));
+
     setFilteredData(updatedArray?.map((item) => item?.card?.card?.info));
-    // console.log(totalRestaurants);
+    setTotalRestaurants(updatedArray?.map((item) => item?.card?.card?.info));
   };
-  // console.log(totalRestaurants);
-  // setFilteredData(totalRestaurants);
   if (!useOnlineStatus()) {
     //custom hook
     return <h1>looks like you're offline! check your internet connection</h1>;
@@ -30,7 +29,6 @@ export default Body = () => {
   if (totalRestaurants.length === 0) {
     return <Shimmer />;
   }
-
   return (
     <div className="body">
       <div className="flex">
@@ -73,8 +71,13 @@ export default Body = () => {
       </div>
       <div className="flex flex-wrap">
         {filteredData.map((restaurant) => (
+          //click->url gets updated to rest/:resId->useParams catch the id->MENU_URL is concatenated with resID and API call is made to that specific restaurant
           <Link key={restaurant.id} to={"/restaurants/" + restaurant.id}>
-            <RestCard resData={restaurant} />
+            {restaurant.promoted ? (
+              <PromotedRestaurantCard resData={restaurant} />
+            ) : (
+              <RestCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
