@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
-//concerned with only displaying the menu and not fetching the api calls for that
-//we have useRestaurantMenu custom hook!
+
 const RestaurantPage = () => {
   const [showIndex, setShowIndex] = useState(0);
   const { resId } = useParams();

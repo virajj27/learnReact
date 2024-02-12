@@ -1,18 +1,19 @@
 import RestCard, { withPromotedLabel } from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import useRestaurantCards from "../utils/useRestaurantCards";
+import UserContext from "../utils/UserContext";
+
 export default Body = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [totalRestaurants, setTotalRestaurants] = useState([]);
   const [searchText, updateSearchText] = useState("");
   const PromotedRestaurantCard = withPromotedLabel(RestCard); //higher order component
+  const { loggedInUser, setUserName } = useContext(UserContext);
   useEffect(() => {
     fetchData();
-    console.log("body useEffect called");
   }, []);
   const fetchData = async () => {
     const data = await fetch(API_URL);
@@ -22,6 +23,7 @@ export default Body = () => {
     setFilteredData(updatedArray?.map((item) => item?.card?.card?.info));
     setTotalRestaurants(updatedArray?.map((item) => item?.card?.card?.info));
   };
+
   if (!useOnlineStatus()) {
     //custom hook
     return <h1>looks like you're offline! check your internet connection</h1>;
@@ -67,6 +69,17 @@ export default Body = () => {
           >
             Top Rated Restaurants
           </button>
+        </div>
+        <div className="m-4 p-4 flex items-center">
+          <label>UserName:</label>
+          <input
+            type="text"
+            className="border border-solid border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">

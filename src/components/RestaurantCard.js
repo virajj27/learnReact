@@ -1,5 +1,9 @@
 import { CDN_URL } from "../utils/constants";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+
 export default RestCard = (props) => {
+  const { loggedInUser } = useContext(UserContext);
   const { resData } = props;
   const {
     name,
@@ -18,6 +22,7 @@ export default RestCard = (props) => {
         <h4>{avgRating}🌟</h4>
         <h4>{costForTwo} FOR TWO</h4>
         <h4>{maxDeliveryTime}</h4>
+        <h4>user:{loggedInUser}</h4>
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "./constants";
 const useRestaurantCards = () => {
-  const [filteredData, setFilteredData] = useState([]);
-  const [totalRestaurants, setTotalRestaurants] = useState([]);
   const [updatedArray, setUpdatedArray] = useState([]);
   useEffect(() => {
     fetchData();
@@ -13,8 +11,8 @@ const useRestaurantCards = () => {
     const json = await data.json();
     setUpdatedArray(json?.data?.cards.slice(3));
 
-    setFilteredData(updatedArray?.map((item) => item?.card?.card?.info));
-    setTotalRestaurants(updatedArray?.map((item) => item?.card?.card?.info));
+    // setFilteredData(updatedArray?.map((item) => item?.card?.card?.info));
+    // setTotalRestaurants(updatedArray?.map((item) => item?.card?.card?.info));
   };
   return updatedArray;
 };
