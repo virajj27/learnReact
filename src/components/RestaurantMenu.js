@@ -19,6 +19,7 @@ const RestaurantPage = () => {
         i?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
+  // console.log(categories);
 
   return (
     <div className="text-center">

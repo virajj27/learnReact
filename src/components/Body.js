@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 
-export default Body = () => {
+const Body = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [totalRestaurants, setTotalRestaurants] = useState([]);
   const [searchText, updateSearchText] = useState("");
@@ -17,7 +17,9 @@ export default Body = () => {
   }, []);
   const fetchData = async () => {
     const data = await fetch(API_URL);
+
     const json = await data.json();
+
     const updatedArray = json?.data?.cards.slice(3);
 
     setFilteredData(updatedArray?.map((item) => item?.card?.card?.info));
@@ -97,3 +99,4 @@ export default Body = () => {
     </div>
   );
 };
+export default Body;

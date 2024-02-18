@@ -3,10 +3,11 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
-
-export default Header = () => {
+import { useSelector } from "react-redux";
+const Header = () => {
   const { loggedInUser } = useContext(UserContext);
   const [loginBtn, setLoginBtn] = useState("login");
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between bg-yellow-300 shadow-lg m-1">
       <div className="w-28 p-5 m-5">
@@ -29,7 +30,10 @@ export default Header = () => {
           <li className="px-4">
             <Link to="/contact">contact us </Link>
           </li>
-          <li className="px-4">cart</li>
+
+          <li className="px-4 font-bold text-xl">
+            <Link to="/cart">cart({cartItems.length} items) </Link>
+          </li>
           <button
             className="login"
             onClick={() => {
@@ -40,9 +44,10 @@ export default Header = () => {
           >
             {loginBtn}
           </button>
-          <li className="px-4 font-bold">{loggedInUser}</li>
+          <li className="px-4 ">{loggedInUser}</li>
         </ul>
       </div>
     </div>
   );
 };
+export default Header;

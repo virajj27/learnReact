@@ -1,7 +1,14 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 const ItemList = ({ data }) => {
   //accordion body
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    dispatch(addItem(item)); //addItem is an action
+  };
   return (
     <div>
       {data.map((item) => {
@@ -18,7 +25,10 @@ const ItemList = ({ data }) => {
               </div>
               <div className="">
                 <div className="absolute">
-                  <button className=" shadow-xl text-black bg-white px-2  rounded-lg text-center">
+                  <button
+                    className=" shadow-xl text-black bg-white px-2  rounded-lg text-center"
+                    onClick={() => handleAddItem(item)}
+                  >
                     add
                   </button>
                 </div>

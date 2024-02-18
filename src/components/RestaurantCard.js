@@ -2,7 +2,7 @@ import { CDN_URL } from "../utils/constants";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
 
-export default RestCard = (props) => {
+const RestCard = (props) => {
   const { loggedInUser } = useContext(UserContext);
   const { resData } = props;
   const {
@@ -43,3 +43,4 @@ export const withPromotedLabel = (RestCard) => {
     );
   };
 };
+export default RestCard;
