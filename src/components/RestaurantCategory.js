@@ -5,6 +5,7 @@ const RestaurantCategory = ({ cardData, showItems, displayIndex }) => {
   const handleClick = () => {
     displayIndex();
   };
+  //accordion header
   return (
     <div>
       <div

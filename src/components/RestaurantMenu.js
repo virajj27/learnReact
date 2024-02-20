@@ -5,9 +5,10 @@ import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
 const RestaurantPage = () => {
-  const [showIndex, setShowIndex] = useState(0);
+  const [showIndex, setShowIndex] = useState(null);
+
   const { resId } = useParams();
-  const resInfo = useRestaurantMenu(resId);
+  const resInfo = useRestaurantMenu(resId); //API call
   if (resInfo === null) {
     return <Shimmer />;
   }
@@ -34,7 +35,10 @@ const RestaurantPage = () => {
               key={category?.card?.card?.title}
               cardData={category?.card?.card}
               showItems={index === showIndex ? true : false}
-              displayIndex={() => setShowIndex(index)}
+              displayIndex={
+                () =>
+                  showIndex === index ? setShowIndex(null) : setShowIndex(index) //genius! because index stat from 0 do ===index
+              }
             />
           );
         })}
